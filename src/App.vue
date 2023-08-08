@@ -6,17 +6,17 @@
   <div>
     <h4>{{ products[0] }}</h4>
     <p>50만원</p>
-    <button @click="increase">허위매물신고</button> <span>신고수 : {{ report[0] }}</span>
+    <button @click="increase(0)">허위매물신고</button> <span>신고수 : {{ report[0] }}</span>
   </div>
   <div>
     <h4>{{ products[1] }}</h4>
     <p>70만원</p>
-    <button @click="increase">허위매물신고</button> <span>신고수 : {{ report[1] }}</span>
+    <button @click="increase(1)">허위매물신고</button> <span>신고수 : {{ report[1] }}</span>
   </div>
   <div>
     <h4>{{ products[2] }}</h4>
     <p>40만원</p>
-    <button @click="increase">허위매물신고</button> <span>신고수 : {{ report[2] }}</span>
+    <button @click="increase(2)">허위매물신고</button> <span>신고수 : {{ report[2] }}</span>
   </div>
 </template>
 
@@ -31,8 +31,8 @@ export default {
     };
   },
   methods: {
-    increase() {
-      this.report += 1;
+    increase(idx) {
+      this.report[idx] += 1;
     },
   },
   components: {},
