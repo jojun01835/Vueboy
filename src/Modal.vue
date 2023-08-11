@@ -5,13 +5,18 @@
       <img :src="onerooms[click].image" :alt="onerooms[click].title" />
       <h4>{{ onerooms[click].price }}</h4>
       <p>{{ onerooms[click].content }}</p>
-      <button @click="Modal = false">❌</button>
+      <button @click="$emit('openclose')">❌</button>
     </div>
   </div>
 </template>
 <script>
 export default {
   name: "myModal",
+  props: {
+    onerooms: Array,
+    click: Number,
+    Modal: Boolean,
+  },
 };
 </script>
 <style></style>

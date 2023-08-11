@@ -1,27 +1,25 @@
 <template>
-  <Modal />
+  <Modal :onerooms="onerooms" :click="click" :Modal="Modal" @openclose="ModalClose" />
   <div class="menu">
     <a v-for="floop in menus" :key="floop">{{ floop }}</a>
   </div>
   <Discnt />
-  <div v-for="(a, i) in onerooms" :key="i">
-    <img :src="a.image" class="room-img" />
-    <h4
-      @click="
-        Modal = true;
-        click = i;
-      "
-    >
-      {{ a.title }}
-    </h4>
-    <p>{{ a.price }}</p>
-  </div>
+  <Card
+    v-bind:onerooms="onerooms[i]"
+    @openModal="
+      handleCardClick();
+      click = $event;
+    "
+    v-for="(a, i) in onerooms"
+    :key="i"
+  />
 </template>
 
 <script>
 import data from "./oneroom";
 import Discnt from "./Discnt.vue";
 import Modal from "./Modal.vue";
+import Card from "./Card.vue";
 
 export default {
   name: "App",
@@ -39,10 +37,17 @@ export default {
     increase(idx) {
       this.report[idx] += 1;
     },
+    handleCardClick() {
+      this.Modal = true; // 수정: Modal 값을 true로 설정
+    },
+    ModalClose() {
+      this.Modal = false;
+    },
   },
   components: {
     Discnt,
     Modal,
+    Card,
   },
 };
 </script>
